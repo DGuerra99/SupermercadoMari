@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style type="text/css">
+    @page {
+            size: landscape;
+            margin: 5mm 8mm 5mm 8mm; /* change the margins as you want them to be. */
+        }
+    .img {
+        width: 8cm;
+        text-align: center;
+        margin: 0;
+        }
+
+        #invoice thead tr th {
+        
+        border: 1px solid black;
+        margin: 5px;
+        padding-top: 4px;
+    }
+
+    #invoice th {
+        
+        border: 1px solid black;
+        margin: 5px;
+        text-align: center;
+        background-color: #F8C471;
+    }
+
+    
+
+    #invoice tbody tr {
+        padding: 1;
+        text-align: left;
+        background-color: #FEF5E7;
+        border: 1px solid black;
+    }
+
+</style>
+</head>
+
+<body>
+    <p style="justify-content: center; text-align: center;"><img src="{{ icon }}" class="img">
+             <br></p>
+
+
+<p class="head">
+    <h1 style="text-align: center;"><l style="font-size: 25px;">Informe General de Existencias de Productos</h1>
+
+</p><br>
+
+<p class="cuerpo">
+
+<table id="invoice">
+    <thead>
+    <tr>
+        <th>CÓDIGO MANUAL</th>
+        <th>CÓDIGO BARRAS</th>
+        <th>NOMBRE</th>
+        <th>EXISTENCIA</th>
+        <th>MARCA</th>
+        <th>PRECIO COSTO</th>
+        <th>PRECIO VENTA</th>
+        <th>PROVEEDOR</th>
+
+    </thead>
+    <tbody>
+    {% for d in productos %}
+        <tr>
+            <td>{{ d.codigo_manual }}</td>
+            <td>{{ d.codigo_barra }}</td>
+            <td>{{ d.nombre }}</td>
+            {% if d.existencia < 6 %}
+            <td style="color: red" "width: 20%;" "font-size:bold;"><b>{{ d.existencia }}</b></td>
+             {% else%}
+            <td style="color: black" "width: 20%;" "font-size:bold;"><b>{{ d.existencia }}</b></td>
+            {% endif %}
+            <td>{{ d.marca }}</td>
+            <td>{{ d.precio_costo}}</td>
+            <td>{{ d.precio_venta}}</td>
+            <td>{{ d.proveedor.nombre }}</td>
+
+
+        </tr>
+    {% endfor %}
+   </tbody>
+
+
+
+   
+
+    
+</body>
+</html>

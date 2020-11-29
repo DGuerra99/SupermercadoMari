@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style type="text/css">
+    @page {
+            size: landscape;
+            margin: 5mm 8mm 5mm 8mm; /* change the margins as you want them to be. */
+        }
+    .img {
+        width: 8cm;
+        text-align: center;
+        margin: 0;
+        }
+
+        #invoice thead tr th {
+        
+        border: 1px solid black;
+        margin: 5px;
+        padding-top: 4px;
+    }
+
+    #invoice th {
+        
+        border: 1px solid black;
+        margin: 5px;
+        text-align: center;
+        background-color: #F8C471;
+    }
+
+    
+
+    #invoice tbody tr {
+        padding: 1;
+        text-align: left;
+        background-color: #FEF5E7;
+        border: 1px solid black;
+    }
+
+</style>
+</head>
+
+<body>
+    <p style="justify-content: center; text-align: center;"><img src="{{ icon }}" class="img">
+             <br></p>
+
+
+
+
+{% if rango.tipo_dev == 'General' %}
+<p class="head">
+    <h1 style="text-align: center;"><l style="font-size: 20px;">Informe de Compras y Ventas del {{rango.fecha_inicio}} al {{rango.fecha_limite}}</h1>
+
+</p><br>
+<p class="cuerpo">
+<h1 style="text-align: center;"><l style="font-size: 16px;">Compras</h1>
+<table id="invoice">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>PROVEEDOR</th>
+        <th>FECHA</th>
+        <th>TOTAL</th>
+
+    </thead>
+    <tbody>
+    {% for d in compras %}
+    {% if d.fecha >= rango.fecha_inicio and d.fecha <= rango.fecha_limite  %}
+        <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.proveedor }}</td>
+            <td>{{ d.fecha }}</td>
+            <td>Q.{{ d.total }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+   </tbody>
+<table id="invoice">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ClIENTE</th>
+        <th>FECHA</th>
+        <th>TOTAL</th>
+
+    </thead>
+    <tbody>
+    {% for d in ventas %}
+    {% if d.fecha >= rango.fecha_inicio and d.fecha <= rango.fecha_limite  %}
+        <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.cliente }}</td>
+            <td>{{ d.fecha }}</td>
+            <td>Q.{{ d.total }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+   </tbody>
+
+   <p class="cuerpo">
+    
+<h1 style="text-align: center;"><l style="font-size: 16px;">Ventas</h1>
+<table id="invoice">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ESCUELA</th>
+        <th>FECHA</th>
+        <th>TOTAL</th>
+
+    </thead>
+    <tbody>
+    {% for d in ventasescuelas %}
+    {% if d.fecha >= rango.fecha_inicio and d.fecha <= rango.fecha_limite  %}
+        <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.escuela.nombre }}</td>
+            <td>{{ d.fecha }}</td>
+            <td>Q.{{ d.total }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+   </tbody>
+
+<h1 style="text-align: center;"><l style="font-size: 16px;">Ventas a Escuelas</h1>
+</p>
+
+<table id="invoice">
+    <thead>
+    <tr>
+        <th style="background-color: none; width:75%; font-size: 14px">Total de Ventas</th>
+        <th style="background-color: none; font-size: 14px">Q.{{rango.total_ventas}}</th>
+        
+        </thead><thead>
+        <th style="background-color: none; width:75%; font-size: 14px">Total de Compras</th>
+        <th style="background-color: none; font-size: 14px">Q.{{rango.total_compras}}</th>
+        
+        </thead><thead>
+        <th style="background-color: none; width:75%; font-size: 14px">Diferencia</th>
+        <th style="background-color: none; font-size: 14px">Q.{{rango.diferencia}}</th>
+    <h1 style="text-align: center;"><l style="font-size: 16px;">Resumen</h1>
+
+    </thead>
+
+{% endif %}  
+
+
+
+{% if rango.tipo_dev == 'Venta' %}
+<p class="head">
+    <h1 style="text-align: center;"><l style="font-size: 20px;">Informe de Ventas del {{rango.fecha_inicio}} al {{rango.fecha_limite}}</h1>
+
+</p><br>
+<p class="cuerpo">
+<table id="invoice">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ClIENTE</th>
+        <th>FECHA</th>
+        <th>TOTAL</th>
+
+    </thead>
+    <tbody>
+    {% for d in ventas %}
+    {% if d.fecha >= rango.fecha_inicio and d.fecha <= rango.fecha_limite  %}
+        <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.cliente }}</td>
+            <td>{{ d.fecha }}</td>
+            <td>Q.{{ d.total }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+   </tbody>
+
+   <p class="cuerpo">
+    
+<h1 style="text-align: center;"><l style="font-size: 16px;">Ventas</h1>
+<table id="invoice">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>ESCUELA</th>
+        <th>FECHA</th>
+        <th>TOTAL</th>
+
+    </thead>
+    <tbody>
+    {% for d in ventasescuelas %}
+    {% if d.fecha >= rango.fecha_inicio and d.fecha <= rango.fecha_limite  %}
+        <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.escuela.nombre }}</td>
+            <td>{{ d.fecha }}</td>
+            <td>Q.{{ d.total }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+   </tbody>
+   
+<h1 style="text-align: center;"><l style="font-size: 16px;">Ventas a Escuelas</h1>
+</p> 
+<table id="invoice">
+    <thead>
+    <tr>
+        <th style="background-color: none; width:75%; font-size: 14px">Total de Ventas</th>
+        <th style="background-color: none; font-size: 14px">Q.{{rango.total_ventas}}</th>
+
+    </thead>
+{% endif %}
+
+{% if rango.tipo_dev == 'Compra' %}
+<p class="head">
+    <h1 style="text-align: center;"><l style="font-size: 20px;">Informe de Compras del {{rango.fecha_inicio}} al {{rango.fecha_limite}}</h1>
+
+</p><br>
+<p class="cuerpo">
+<table id="invoice">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>PROVEEDOR</th>
+        <th>FECHA</th>
+        <th>TOTAL</th>
+
+    </thead>
+    <tbody>
+    {% for d in compras %}
+    {% if d.fecha >= rango.fecha_inicio and d.fecha <= rango.fecha_limite  %}
+        <tr>
+            <td>{{ d.id }}</td>
+            <td>{{ d.proveedor }}</td>
+            <td>{{ d.fecha }}</td>
+            <td>Q.{{ d.total }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+   </tbody>
+   
+
+
+
+
+<table id="invoice">
+    <thead>
+    <tr>
+        <th style="background-color: none; width:75%; font-size: 14px">Total de Compras</th>
+        <th style="background-color: none; font-size: 14px">Q.{{rango.total_compras}}</th>
+
+    </thead>
+    {% endif %}
+</p>
+
+
+
+
+   
+
+    
+</body>
+</html>

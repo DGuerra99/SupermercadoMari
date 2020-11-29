@@ -1,0 +1,274 @@
+{% extends "admin/base.html" %}
+
+
+
+{% block nav-global %}{% endblock %}
+
+
+
+{% block title %}{{ title }} | DG-Edu/INED{% endblock %}
+
+
+
+
+{% block extrastyle%}
+<style>
+    #header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background: linear-gradient(to bottom, #f7ebb7, #f7d954);
+    color: #ffc;
+    overflow: hidden;
+    vertical-align: center
+    }
+
+    
+
+    #branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    }
+
+
+    #user-tools {
+    float: right;
+    padding: 0;
+    margin: 0 0 0 20px;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #b82013;
+    font-weight: bold;
+    vertical-align: center;
+
+    }
+    #header a:link, #header a:visited {
+    color: #b82013;
+}
+
+
+    .module caption, .inline-group h2 {
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(to bottom, #ed4837, #ed4837);
+    border:1px solid #043859;
+    padding: 16px;
+    margin: 0;
+    width: auto;
+
+    }
+    #content-related .module h2 {
+    padding: 16px;
+    margin-bottom: auto;
+    border-bottom: 3px solid #154360;
+    font-size: 14px;
+    color: #ff4d00;
+    border: 0px;
+    text-align: center;
+    }
+
+    #content-related .module {
+    background: linear-gradient(to bottom, #f5e267, #fcec7e);
+    }
+    #content-related h3 {
+    margin-top: .6em;
+    font-size: 12px;
+    }
+
+    .dashboard #content {
+    width: auto;
+    margin-left: 0;
+    border-bottom: 1px solid #014d7a;
+    }
+
+    td, th {
+    font-size: 13px;
+    line-height: 16px;
+    border-bottom: 1px solid #014d7a;
+    vertical-align: top;
+    padding: 8px;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    background: linear-gradient(to bottom, #fcf3f2, #fadfdc);
+    color: #012033;
+    }
+    a:link, a:visited {
+    color: #012033;
+    text-decoration: none;
+    }
+
+    h1 {
+    margin: 0 0 20px;
+    font-weight: 300;
+    font-size: 25px;
+    color: #023b5e;
+    text-align: center;
+    }
+    .module {
+    border: none;
+    margin-bottom: 30px;
+    background: transparent;
+    }
+
+    div {
+    display: block;
+    background: transparent;
+    }
+
+    div.breadcrumbs {
+    background: #f2f2ca;
+    padding: 10px 40px;
+    border: none;
+    font-size: 14px;
+    color: #012033;
+    text-align: left;
+    }
+
+    div.breadcrumbs a {
+    color: #012033;
+    }
+
+    div.breadcrumbs a:hover {
+    color: #f59402;
+    }
+
+    .module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: linear-gradient(to bottom, #ed4837, #ed4837);
+    color: #fff;
+    text-align: center;
+    }
+
+    .button, input[type=submit], input[type=button], .submit-row input, a.button {
+    background: #f7d445;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #9b251b;
+    cursor: pointer;
+    }
+
+    .button.default, input[type=submit].default, .submit-row input.default {
+    float: right;
+    border: none;
+    font-weight: 400;
+    color: #fff;
+    background: #e61e0b;
+
+    }
+
+    .button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
+    background: #fa7c70;
+    }
+
+    button:active, input[type=submit]:active, input[type=button]:active, .button:focus, input[type=submit]:focus, input[type=button]:focus, .button:hover, input[type=submit]:hover, input[type=button]:hover {
+    background: #fae489;
+    }
+
+    .object-tools a.viewsitelink, .object-tools a.golink, .object-tools a.addlink {
+    background-repeat: no-repeat;
+    background-position: right 7px center;
+    padding-right: 26px;
+    background: #ff5005;
+
+    }
+
+    
+
+    .selector-chosen h2 {
+    background: #9edaff;
+    color: #fff;
+    }
+
+    .l{
+    border-radius: 50%;
+
+    }
+
+    a.section:link, a.section:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.object-tools a:focus, .object-tools a:hover {
+    background-color: #e8978e;
+}
+
+.informe a:link{
+	background-color: #fa2e00;
+	padding: 6px;
+	border: 4px 4px;
+	color: #fff;
+	font-size: 16px;
+
+}
+
+.informe{
+	background-color: #fa2e00;
+	padding: 6px;
+	border: 4px 4px;
+	color: #fff;
+	font-size: 16px;
+
+}
+
+.informe:hover{
+	background-color: #fa927a;
+	padding: 8px;
+	border: 4px 4px;
+	color: #fff;
+	font-size: 16px;
+
+}
+
+.select2-container--admin-autocomplete .select2-results__option--highlighted[aria-selected] {
+    background-color: #ed4837;
+    color: white;
+}
+
+.inventario{
+	background-color: #fa2e00;
+	padding: 6px;
+	border: 4px 4px;
+	color: #fff;
+	font-size: 30px;
+	justify-content: center;
+	text-align: center;
+
+}
+
+.inventario:hover{
+	background-color: #fa927a;
+	padding: 8px;
+	border: 4px 4px;
+	color: #fff;
+	font-size: 35px;
+
+}
+
+
+
+</style>
+
+{% endblock %}
+
+
+
+{% block branding %}
+<h1 id="site-name" ><a href="{% url 'admin:index' %}"><img src="/media/logo.png" height="100 px" border="none" background:none align="center"><h1></h1></a></h1>
+
+{% endblock %}
+
